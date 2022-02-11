@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>My profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-avatar>
+        <img
+            [src]="user.photo"
+            [src-fallback]="'https://eu.ui-avatars.com/api/?background=random&color=fff&name=' + user.name"
+            alt="{{ user.name }}"
+        />
+    </ion-avatar>
+    <h1>{{ user.name }}</h1>
+
+    <ion-button color="danger" (click)="logout()">Logout</ion-button>
+
+    <ion-segment mode="md" (ionChange)="segmentChanged($event)" [value]="segment">
+        <ion-segment-button value="">
+            <ion-label>Mine</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="favorites">
+            <ion-label>Favorites</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <router-outlet></router-outlet>
+
+</ion-content>
